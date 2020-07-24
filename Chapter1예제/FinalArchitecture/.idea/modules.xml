@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FinalArchitecture.iml" filepath="$PROJECT_DIR$/.idea/modules/FinalArchitecture.iml" group="FinalArchitecture" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaApp/JavaApp.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaApp/JavaApp.iml" group="FinalArchitecture/JavaApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KotlinApp/KotlinApp.iml" filepath="$PROJECT_DIR$/.idea/modules/KotlinApp/KotlinApp.iml" group="FinalArchitecture/KotlinApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVCSample/MVCSample.iml" filepath="$PROJECT_DIR$/.idea/modules/MVCSample/MVCSample.iml" group="FinalArchitecture/MVCSample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVPSample/MVPSample.iml" filepath="$PROJECT_DIR$/.idea/modules/MVPSample/MVPSample.iml" group="FinalArchitecture/MVPSample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MVVMSample/MVVMSample.iml" filepath="$PROJECT_DIR$/.idea/modules/MVVMSample/MVVMSample.iml" group="FinalArchitecture/MVVMSample" />
+    </modules>
+  </component>
+</project>
