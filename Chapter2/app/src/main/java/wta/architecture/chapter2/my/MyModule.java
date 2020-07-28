@@ -3,6 +3,7 @@ package wta.architecture.chapter2.my;
 import androidx.annotation.Nullable;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,5 +30,11 @@ public class MyModule {
     @Nullable
     int provideAge() { //나이 제공
         return 100;
+    }
+
+    @Provides
+    @Singleton
+    Object provideObject() {
+        return new Object();
     }
 }

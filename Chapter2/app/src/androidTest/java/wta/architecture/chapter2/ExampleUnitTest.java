@@ -81,4 +81,14 @@ public class ExampleUnitTest {
         counterComponent.inject(counter);
         counter.printProvider();
     }
+
+    @Test
+    public void testObjectIdentity() {
+        MyComponent myComponent = DaggerMyComponent.create();
+        Object temp1 = myComponent.getObject();
+        Object temp2 = myComponent.getObject();
+        Assert.assertNotNull(temp1);
+        Assert.assertNotNull(temp2);
+        Assert.assertSame(temp1, temp2);
+    }
 }

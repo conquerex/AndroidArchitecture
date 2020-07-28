@@ -2,6 +2,8 @@ package wta.architecture.chapter2.my;
 
 import androidx.annotation.Nullable;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
 import dagger.MembersInjector;
 
@@ -11,6 +13,7 @@ import dagger.MembersInjector;
  * 이때 클래스의 이름은 'Dagger'라는 접두어가 붙는다.
  * MyComponent --> Dagger에의해 생성된 클래스 : DaggerMyComponent
  */
+@Singleton
 @Component(modules = MyModule.class)
 public interface MyComponent {
     // 해당 인터페이스 내에는 제공할 의존성들을 메서드로 정의해야 한다.
@@ -27,4 +30,6 @@ public interface MyComponent {
 
     // 프로비전 메서드
 //    MyClass getMyClass();
+
+    Object getObject();
 }
