@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import dagger.MembersInjector;
+import wta.architecture.chapter2.counter.Counter;
+import wta.architecture.chapter2.counter.CounterComponent;
+import wta.architecture.chapter2.counter.DaggerCounterComponent;
 import wta.architecture.chapter2.my.DaggerMyComponent;
 import wta.architecture.chapter2.my.MyClass;
 import wta.architecture.chapter2.my.MyComponent;
@@ -56,5 +59,21 @@ public class ExampleUnitTest {
 
         Assert.assertEquals("kook", personB.getName());
         Assert.assertEquals(99, personB.getAge());
+    }
+
+    @Test
+    public void testLazy() {
+        CounterComponent counterComponent = DaggerCounterComponent.create();
+        Counter counter = new Counter();
+        counterComponent.inject(counter);
+        counter.printLazy();
+    }
+
+    @Test
+    public void testProvider() {
+        CounterComponent counterComponent = DaggerCounterComponent.create();
+        Counter counter = new Counter();
+        counterComponent.inject(counter);
+        counter.printProvider();
     }
 }

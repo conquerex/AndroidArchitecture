@@ -30,17 +30,17 @@ public interface PersonComponent {
     }
 
     // 컴포넌트 객체 만들기 - 컴포넌트 팩토리
-    @Component.Factory
-    interface Factory {
-        /**
-         * 팩토리 메서드
-         * 컴포넌트 타입 또는 컴포넌트의 슈퍼 타입을 반환하는 하나의 추상 메서드만 존재
-         * @Component 애노테이션에 modules, dependencies로 지정된 속성들을 반드시 매개변수로 가져야
-         * 메서드에 @BindInstance 애노테이션이 붙은 매개변수는 해당 컴포넌트에 인스턴스를 넘겨 바인드
-         */
-        PersonComponent newPersonComponent(
-                PersonModule pm,
-                @BindsInstance PersonA personA
-        );
-    }
+//    @Component.Factory
+//    interface Factory {
+//        /**
+//         * 팩토리 메서드
+//         * 컴포넌트 타입 또는 컴포넌트의 슈퍼 타입을 반환하는 하나의 추상 메서드만 존재
+//         * @Component 애노테이션에 modules, dependencies로 지정된 속성들을 반드시 매개변수로 가져야
+//         * 메서드에 @BindInstance 애노테이션이 붙은 매개변수는 해당 컴포넌트에 인스턴스를 넘겨 바인드
+//         */
+//        PersonComponent newPersonComponent(
+//                PersonModule pm,
+//                @BindsInstance PersonA personA
+//        );
+//    }
 }
