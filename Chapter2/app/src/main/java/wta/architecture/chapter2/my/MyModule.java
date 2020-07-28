@@ -2,6 +2,8 @@ package wta.architecture.chapter2.my;
 
 import androidx.annotation.Nullable;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -11,8 +13,16 @@ public class MyModule {
 
     // @Provides : 의존성을 제공하는 메서드에 붙인다
     @Provides
-    String provideHelloWorld() {
-        return "Hello World";
+//    @Named("hello")
+    @Hello
+    String provideHello() {
+        return "Hello";
+    }
+
+    @Provides
+    @Named("world")
+    String provideWorld() {
+        return "World";
     }
 
     @Provides

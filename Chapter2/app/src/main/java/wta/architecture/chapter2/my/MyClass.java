@@ -1,12 +1,22 @@
 package wta.architecture.chapter2.my;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class MyClass {
     @Inject
-    String str;
+    @Hello
+    String strHello;
 
-    public String getStr() {
-        return str;
+    @Inject
+    @Named("world")
+    String strWorld;
+
+    public String getStrHello() {
+        return strHello;
+    }
+
+    public String getStrWorld() {
+        return strWorld;
     }
 }

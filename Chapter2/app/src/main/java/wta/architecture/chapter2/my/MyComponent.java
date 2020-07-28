@@ -14,7 +14,7 @@ import dagger.MembersInjector;
 @Component(modules = MyModule.class)
 public interface MyComponent {
     // 해당 인터페이스 내에는 제공할 의존성들을 메서드로 정의해야 한다.
-    String getString(); // 브로비전 메서드, 바인드된 모듈로부터 의존성을 제공
+//    String getString(); // 브로비전 메서드, 바인드된 모듈로부터 의존성을 제공
 
     @Nullable
     Integer getInteger();
