@@ -1,4 +1,4 @@
-package wta.architecture.chapter2;
+package wta.architecture.chapter2.my;
 
 import javax.inject.Inject;
 

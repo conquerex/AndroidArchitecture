@@ -1,10 +1,16 @@
 package wta.architecture.chapter2;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import org.junit.Assert;
-
 import dagger.MembersInjector;
+import wta.architecture.chapter2.my.DaggerMyComponent;
+import wta.architecture.chapter2.my.MyClass;
+import wta.architecture.chapter2.my.MyComponent;
+import wta.architecture.chapter2.person.DaggerPersonComponent;
+import wta.architecture.chapter2.person.PersonA;
+import wta.architecture.chapter2.person.PersonB;
+import wta.architecture.chapter2.person.PersonComponent;
 
 public class ExampleUnitTest {
     // Dagger에 의해 생성된 클래스를 통해 의존성을 제공받아본다.
@@ -37,5 +43,18 @@ public class ExampleUnitTest {
         str = myClass.getStr();
         Assert.assertNotNull("조회 결과 null ::: ", str); // null이 아님을 확인
         Assert.assertEquals("Hello World", str);
+    }
+
+    @Test
+    public void testInjection() {
+        PersonComponent personComponent = DaggerPersonComponent.create();
+        PersonA personA = personComponent.getPersonA();
+        System.out.println(personA.getName() + " ::: " + personA.getAge());
+
+        PersonB personB = new PersonB();
+        DaggerPersonComponent.create().inject(personB);
+
+        Assert.assertEquals("kook", personB.getName());
+        Assert.assertEquals(99, personB.getAge());
     }
 }
