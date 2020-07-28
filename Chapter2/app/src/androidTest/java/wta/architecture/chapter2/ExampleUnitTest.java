@@ -4,6 +4,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import dagger.MembersInjector;
+import wta.architecture.chapter2.common.Bar;
+import wta.architecture.chapter2.common.BindsComponent;
+import wta.architecture.chapter2.common.DaggerBindsComponent;
+import wta.architecture.chapter2.common.DaggerNoStrComponent;
+import wta.architecture.chapter2.common.DaggerStrComponent;
+import wta.architecture.chapter2.common.Foo;
 import wta.architecture.chapter2.counter.Counter;
 import wta.architecture.chapter2.counter.CounterComponent;
 import wta.architecture.chapter2.counter.DaggerCounterComponent;
@@ -90,5 +96,29 @@ public class ExampleUnitTest {
         Assert.assertNotNull(temp1);
         Assert.assertNotNull(temp2);
         Assert.assertSame(temp1, temp2);
+    }
+
+    @Test
+    public void testFoo() {
+        Foo foo = new Foo();
+
+        System.out.println("...........");
+
+        DaggerStrComponent.create().inject(foo);
+        System.out.println(foo.str.isPresent());
+        System.out.println(foo.str.get());
+
+        DaggerNoStrComponent.create().inject(foo);
+        System.out.println(foo.str.isPresent());
+//        System.out.println(foo.str.get()); // error
+    }
+
+    @Test
+    public void testBindsInstance() {
+        String hello = "Hello world....";
+        Bar bar = new Bar();
+        BindsComponent bindsComponent = DaggerBindsComponent.builder().setString(hello).build();
+        bindsComponent.inject(bar);
+        Assert.assertEquals("Hello world....", bar.str);
     }
 }
