@@ -1,5 +1,7 @@
 package wta.architecture.chapter2;
 
+import androidx.annotation.Nullable;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -11,5 +13,11 @@ public class MyModule {
     @Provides
     String provideHelloWorld() {
         return "Hello World";
+    }
+
+    @Provides
+    @Nullable
+    int provideAge() { //나이 제공
+        return 100;
     }
 }
