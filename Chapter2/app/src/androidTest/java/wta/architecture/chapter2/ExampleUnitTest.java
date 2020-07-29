@@ -3,6 +3,8 @@ package wta.architecture.chapter2;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import dagger.MembersInjector;
 import wta.architecture.chapter2.common.Bar;
 import wta.architecture.chapter2.common.BindsComponent;
@@ -16,10 +18,22 @@ import wta.architecture.chapter2.counter.DaggerCounterComponent;
 import wta.architecture.chapter2.my.DaggerMyComponent;
 import wta.architecture.chapter2.my.MyClass;
 import wta.architecture.chapter2.my.MyComponent;
+import wta.architecture.chapter2.parent.ChildComponent;
+import wta.architecture.chapter2.parent.DaggerMultibindsComopnent;
+import wta.architecture.chapter2.parent.DaggerParentComponent;
+import wta.architecture.chapter2.parent.MultibindsComopnent;
+import wta.architecture.chapter2.parent.ParentComponent;
 import wta.architecture.chapter2.person.DaggerPersonComponent;
 import wta.architecture.chapter2.person.PersonA;
 import wta.architecture.chapter2.person.PersonB;
 import wta.architecture.chapter2.person.PersonComponent;
+import wta.architecture.chapter2.set.Animal;
+import wta.architecture.chapter2.set.DaggerMapComponent;
+import wta.architecture.chapter2.set.DaggerMapKeyComponent;
+import wta.architecture.chapter2.set.DaggerSetComponent;
+import wta.architecture.chapter2.set.Foo3;
+import wta.architecture.chapter2.set.MapComponent;
+import wta.architecture.chapter2.set.MapKeyComponent;
 
 public class ExampleUnitTest {
     // Dagger에 의해 생성된 클래스를 통해 의존성을 제공받아본다.
@@ -120,5 +134,67 @@ public class ExampleUnitTest {
         BindsComponent bindsComponent = DaggerBindsComponent.builder().setString(hello).build();
         bindsComponent.inject(bar);
         Assert.assertEquals("Hello world....", bar.str);
+    }
+
+    @Test
+    public void testMultibindingSet() {
+        Foo3 foo3 = new Foo3();
+        DaggerSetComponent.create().inject(foo3);
+        foo3.print();
+    }
+
+    @Test
+    public void testbindingMap() {
+        MapComponent component = DaggerMapComponent.create();
+        long value = component.getLongsByString().get("foo");
+        String str = component.getStringsByClass().get(Foo.class);
+
+        System.out.println("...........");
+        System.out.println(value);
+        System.out.println(str);
+    }
+
+
+    @Test
+    public void testCustomMapKey() {
+        MapKeyComponent component = DaggerMapKeyComponent.create();
+        String cat = component.getStringsByAnimal().get(Animal.CAT);
+        String dog = component.getStringsByAnimal().get(Animal.DOG);
+        String number1 = component.getStringsByNumber().get(Integer.class);
+        String number2 = component.getStringsByNumber().get(Float.class);
+
+        System.out.println("...........testCustomMapKey");
+        System.out.println(dog);
+        System.out.println(cat);
+        System.out.println(number1);
+        System.out.println(number2);
+    }
+
+    @Test
+    public void testMultibindSubcomponent() {
+        ParentComponent parentComponent = DaggerParentComponent.create();
+        ChildComponent childComponent = parentComponent.childCompBuilder().build();
+
+        System.out.println("...........Subcomponent parent");
+        Iterator itr = parentComponent.strings().iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
+
+        System.out.println("...........Subcomponent child");
+        itr = childComponent.strings().iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
+    }
+
+    @Test
+    public void testMultibinds() {
+        MultibindsComopnent comopnent = DaggerMultibindsComopnent.create();
+
+        System.out.println("...........testMultibinds");
+        for (String s : comopnent.getStrings()) {
+            System.out.println(s);
+        }
     }
 }
