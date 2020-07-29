@@ -34,6 +34,7 @@ import wta.architecture.chapter2.set.DaggerSetComponent;
 import wta.architecture.chapter2.set.Foo3;
 import wta.architecture.chapter2.set.MapComponent;
 import wta.architecture.chapter2.set.MapKeyComponent;
+import wta.architecture.chapter2.sub.Cafe;
 
 public class ExampleUnitTest {
     // Dagger에 의해 생성된 클래스를 통해 의존성을 제공받아본다.
@@ -196,5 +197,15 @@ public class ExampleUnitTest {
         for (String s : comopnent.getStrings()) {
             System.out.println(s);
         }
+    }
+
+
+    @Test
+    public void testCafe() {
+        Cafe cafe = new Cafe();
+        System.out.println("...........cafe");
+        System.out.println(cafe.orderCoffee());
+        System.out.println(cafe.orderCoffee());
+        System.out.println(cafe.orderCoffee());
     }
 }
