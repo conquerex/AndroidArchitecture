@@ -15,6 +15,11 @@ import wta.architecture.chapter2.common.Foo;
 import wta.architecture.chapter2.counter.Counter;
 import wta.architecture.chapter2.counter.CounterComponent;
 import wta.architecture.chapter2.counter.DaggerCounterComponent;
+import wta.architecture.chapter2.dependencies.ComponentA;
+import wta.architecture.chapter2.dependencies.ComponentB;
+import wta.architecture.chapter2.dependencies.DaggerComponentA;
+import wta.architecture.chapter2.dependencies.DaggerComponentB;
+import wta.architecture.chapter2.dependencies.Foo4;
 import wta.architecture.chapter2.my.DaggerMyComponent;
 import wta.architecture.chapter2.my.MyClass;
 import wta.architecture.chapter2.my.MyComponent;
@@ -207,5 +212,16 @@ public class ExampleUnitTest {
         System.out.println(cafe.orderCoffee());
         System.out.println(cafe.orderCoffee());
         System.out.println(cafe.orderCoffee());
+    }
+
+    @Test
+    public void testDependency() {
+        Foo4 foo = new Foo4();
+        ComponentA componentA = DaggerComponentA.create();
+        ComponentB componentB = DaggerComponentB.builder().componentA(componentA).build();
+        componentB.inject(foo);
+        System.out.println("...........testDependency");
+        System.out.println(foo.str);
+        System.out.println(foo.integer);
     }
 }
