@@ -2,23 +2,52 @@ package wta.architecture.chapter2;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
-public class MainActivity extends AppCompatActivity {
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasAndroidInjector;
+
+//public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HasAndroidInjector {
+
+//    @Inject
+//    SharedPreferences sharedPreferences;
+//
+//    @Inject
+//    String activityName;
+//
+//    MainActivityComponent component;
 
     @Inject
-    SharedPreferences sharedPreferences;
+    DispatchingAndroidInjector<Object> androidInjector;
 
     @Inject
-    String activityName;
+    @Named("app")
+    String appString;
 
-    MainActivityComponent component;
+    @Inject
+    @Named("app")
+    String activityString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // super.onCreate 메서드를 호출하기 전에 AndroidInjection.inject를 호출
+        // AndroidInjection.inject를 호출하면 App으로부터 DispatchingAndroidInjector<Object>를 얻고
+        // 이를 통해 MainActivity에 맞는 AndroidInjector.Factory를 클래스 이름을 통해 찾는다. --> @ClassKey(MainActivity.class)
+        // 팩토리를 통해 생성된 MainActivitySubcomponent는 액티비티에서 호출한 inject()를 통해 의존성 주입이 완료된다.
+        // AppModule에서 팩토리를 통해 MainActivitySubcomponent가 생성 --> 액티비티에서 호출한 inject()를 통해 의존성 주입
+        AndroidInjection.inject(this);
+        // 멤버 인젝션 이후, 의존성 주입이 잘 되었는지 확인
+        Log.e("MainActivity", appString);
+        Log.e("MainActivity", activityString);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -32,19 +61,24 @@ public class MainActivity extends AppCompatActivity {
          * 애플리케이션 컴포넌트로부터 SharedPreferences를 주입받고
          * 액티비티 커포넌트로부터 String 객체를 주입받았다.
          */
-        component = ((App)getApplication()).getAppComponent()
-                .mainBuilder() // MainActivityComponent 객체화
-                .setModule(new MainActivityModule()) // 모듈 생성
-                .setActivity(this) // 컴포넌트에 Activity 인스턴스를 넘겨 바인드
-                .build();
-        component.inject(this);
+//        component = ((App)getApplication()).getAppComponent()
+//                .mainBuilder() // MainActivityComponent 객체화
+//                .setModule(new MainActivityModule()) // 모듈 생성
+//                .setActivity(this) // 컴포넌트에 Activity 인스턴스를 넘겨 바인드
+//                .build();
+//        component.inject(this);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new MainFragment())
                 .commit();
     }
 
-    public MainActivityComponent getComponent() {
-        return component;
+//    public MainActivityComponent getComponent() {
+//        return component;
+//    }
+
+    @Override
+    public AndroidInjector<Object> androidInjector() {
+        return androidInjector;
     }
 }

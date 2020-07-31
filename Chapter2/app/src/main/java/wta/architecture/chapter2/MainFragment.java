@@ -8,30 +8,49 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import dagger.android.support.AndroidSupportInjection;
 
 public class MainFragment extends Fragment {
-    @Inject
-    SharedPreferences sharedPreferences;
+//    @Inject
+//    SharedPreferences sharedPreferences;
+//
+//    @Inject
+//    String activityName;
+//
+//    @Inject
+//    Integer randomNum;
 
     @Inject
-    String activityName;
+    @Named("app")
+    String appString;
 
     @Inject
-    Integer randomNum;
+    @Named("activity")
+    String activityString;
+
+    @Inject
+    @Named("fragment")
+    String fragmentString;
 
     @Override
     public void onAttach(@NonNull Context context) {
+        AndroidSupportInjection.inject(this);
+        Log.e("MainFragment", appString);
+        Log.e("MainFragment", activityString);
+        Log.e("MainFragment", fragmentString);
         super.onAttach(context);
-        if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).getComponent()
-                    .mainFragmentBuilder()
-                    .setModule(new MainFragmentModule())
-                    .setFragment(this)
-                    .build().inject(this);
-        }
+//        if (getActivity() instanceof MainActivity) {
+//            ((MainActivity) getActivity()).getComponent()
+//                    .mainFragmentBuilder()
+//                    .setModule(new MainFragmentModule())
+//                    .setFragment(this)
+//                    .build().inject(this);
+//        }
 
-        Log.d("MainFragment", activityName);
-        Log.d("MainFragment", "num1 :::: " + randomNum);
-        Log.d("MainFragment", "num2 :::: " + randomNum);
+//        Log.d("MainFragment", activityName);
+//        Log.d("MainFragment", "num1 :::: " + randomNum);
+//        Log.d("MainFragment", "num2 :::: " + randomNum);
     }
 }
