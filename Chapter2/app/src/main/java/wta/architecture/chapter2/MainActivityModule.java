@@ -6,11 +6,13 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.AndroidInjector;
+import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.ClassKey;
 import dagger.multibindings.IntoMap;
 
 //@Module(subcomponents = MainFragmentComponent.class)
-@Module(subcomponents = MainFragmentSubcomponent.class)
+//@Module(subcomponents = MainFragmentSubcomponent.class)
+@Module
 public abstract class MainActivityModule {
 
     @Named("activity")
@@ -20,11 +22,15 @@ public abstract class MainActivityModule {
         return ".......String from MainActivityModule";
     }
 
-    // MainFragment를 위한 인젝터 팩토리를 멀티 바인딩
-    @Binds
-    @IntoMap
-    @ClassKey(MainFragment.class)
-    abstract AndroidInjector.Factory<?> bindInjectorFactory(MainFragmentSubcomponent.Factory factory);
+    @FragmentScope
+    @ContributesAndroidInjector(modules = MainFragmentModule.class)
+    abstract MainFragment mainFragment();
+
+//    // MainFragment를 위한 인젝터 팩토리를 멀티 바인딩
+//    @Binds
+//    @IntoMap
+//    @ClassKey(MainFragment.class)
+//    abstract AndroidInjector.Factory<?> bindInjectorFactory(MainFragmentSubcomponent.Factory factory);
 
 //    @Provides
 //    @ActivityScope

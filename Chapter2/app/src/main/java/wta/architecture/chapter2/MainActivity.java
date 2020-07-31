@@ -1,21 +1,22 @@
 package wta.architecture.chapter2;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasAndroidInjector;
+import dagger.android.support.DaggerAppCompatActivity;
 
+/**
+ * third
+ * Dagger에서 제공하는 Dagger 베이스 클래스를 상속함으로써 많은 보일러 플레이트 코드를 제거할 수 있다.
+ * 제거된 코드 : DispatchingAndroidInjector, HasAndroidInjector
+ */
 //public class MainActivity extends AppCompatActivity {
-public class MainActivity extends AppCompatActivity implements HasAndroidInjector {
+//public class MainActivity extends AppCompatActivity implements HasAndroidInjector {
+public class MainActivity extends DaggerAppCompatActivity {
 
 //    @Inject
 //    SharedPreferences sharedPreferences;
@@ -24,16 +25,16 @@ public class MainActivity extends AppCompatActivity implements HasAndroidInjecto
 //    String activityName;
 //
 //    MainActivityComponent component;
-
-    @Inject
-    DispatchingAndroidInjector<Object> androidInjector;
+    
+//    @Inject
+//    DispatchingAndroidInjector<Object> androidInjector;
 
     @Inject
     @Named("app")
     String appString;
 
     @Inject
-    @Named("app")
+    @Named("activity")
     String activityString;
 
     @Override
@@ -77,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements HasAndroidInjecto
 //        return component;
 //    }
 
-    @Override
-    public AndroidInjector<Object> androidInjector() {
-        return androidInjector;
-    }
+//    @Override
+//    public AndroidInjector<Object> androidInjector() {
+//        return androidInjector;
+//    }
 }

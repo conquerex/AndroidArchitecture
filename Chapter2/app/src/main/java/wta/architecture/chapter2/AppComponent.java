@@ -16,6 +16,11 @@ import dagger.android.AndroidInjector;
  * AndroidInjectionModule에는 안드로이드 프레임워크 관련 클래스에 의존성 주입을 위임할
  * AndroidInjector<?>의 팩토리를 멀티 바인딩으로 관리한다.
  * AndroidInjector는 멤버 인젝션을 위한 inject() 메서드가 포함
+ *
+ * third
+ * 만약 서브 컴포넌트의 팩토리가 다른 메서드나 클래스를 상속하지 않는다면
+ * @ContributesAndroidInjector를 확용해 서브 컴포넌트를 정의하는 코드를 대체함으로써
+ * 서브 컴포넌트를 위한 보일러 플레이트 코드를 더 줄일 수 있다.
  */
 @Singleton
 @Component(modules = {AppModule.class, AndroidInjectionModule.class})

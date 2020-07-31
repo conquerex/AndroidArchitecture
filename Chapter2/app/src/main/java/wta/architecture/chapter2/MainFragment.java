@@ -11,8 +11,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.DaggerFragment;
 
-public class MainFragment extends Fragment {
+//public class MainFragment extends Fragment {
+public class MainFragment extends DaggerFragment {
+
 //    @Inject
 //    SharedPreferences sharedPreferences;
 //

@@ -9,11 +9,11 @@ import dagger.Provides;
 
 @Module
 public class MainFragmentModule {
-    @Provides
-    @FragmentScope
-    Integer provideInt() {
-        return new Random().nextInt();
-    }
+//    @Provides
+//    @FragmentScope
+//    Integer provideInt() {
+//        return new Random().nextInt();
+//    }
 
     @Named("fragment")
     @Provides
