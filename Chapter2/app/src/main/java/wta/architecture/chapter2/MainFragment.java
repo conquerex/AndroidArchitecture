@@ -39,11 +39,11 @@ public class MainFragment extends DaggerFragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
-        AndroidSupportInjection.inject(this);
+//        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
         Log.e("MainFragment", appString);
         Log.e("MainFragment", activityString);
         Log.e("MainFragment", fragmentString);
-        super.onAttach(context);
 //        if (getActivity() instanceof MainActivity) {
 //            ((MainActivity) getActivity()).getComponent()
 //                    .mainFragmentBuilder()

@@ -32,9 +32,9 @@ public abstract class MainActivityModule {
 //    @ClassKey(MainFragment.class)
 //    abstract AndroidInjector.Factory<?> bindInjectorFactory(MainFragmentSubcomponent.Factory factory);
 
-//    @Provides
-//    @ActivityScope
-//    String provideActivityName() {
-//        return MainActivity.class.getSimpleName();
-//    }
+    @Provides
+    @ActivityScope
+    String provideActivityName() {
+        return MainActivity.class.getSimpleName();
+    }
 }

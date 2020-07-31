@@ -23,9 +23,12 @@ public class App extends DaggerApplication {
 //        DaggerAppComponent.factory().create(this).inject(this);
 //    }
 
+    // DaggerApplication를 상속 --> applicationInjector 메서드를 구현
+    // 이 때 애플리케이션 컴포넌트를 반환시키는 코드를 작성하기만 하면 기존의 모든 코드를 대체할 수 있다.
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerAppComponent.factory().create(this);
+        return DaggerAppComponent
+                .factory().create(this);
     }
 
 //    public AppComponent getAppComponent() {

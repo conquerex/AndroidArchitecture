@@ -1,5 +1,6 @@
 package wta.architecture.chapter2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -18,24 +19,31 @@ import dagger.android.support.DaggerAppCompatActivity;
 //public class MainActivity extends AppCompatActivity implements HasAndroidInjector {
 public class MainActivity extends DaggerAppCompatActivity {
 
-//    @Inject
-//    SharedPreferences sharedPreferences;
-//
-//    @Inject
-//    String activityName;
-//
+    @Inject
+    SharedPreferences sharedPreferences;
+
+    @Inject
+    String activityName;
+
 //    MainActivityComponent component;
-    
+
+    /**
+     * fourth
+     * DispatchingAndroidInjector는 AndroidInjector.Factory를 런 타임에 찾도록
+     * HasAndroidInjector를 구현하게 되고, 매번 액티비티 또는 프래그먼트 등에서
+     * AndroidInjection.inject()를 호출하는 것 또한 보일러 플레이트 코드이므로
+     * 이를 구현할 Base 클랙스를 작성할 수 있다. ---> android.dagger 패키지
+     */
 //    @Inject
 //    DispatchingAndroidInjector<Object> androidInjector;
 
-    @Inject
-    @Named("app")
-    String appString;
-
-    @Inject
-    @Named("activity")
-    String activityString;
+//    @Inject
+//    @Named("app")
+//    String appString;
+//
+//    @Inject
+//    @Named("activity")
+//    String activityString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +52,10 @@ public class MainActivity extends DaggerAppCompatActivity {
         // 이를 통해 MainActivity에 맞는 AndroidInjector.Factory를 클래스 이름을 통해 찾는다. --> @ClassKey(MainActivity.class)
         // 팩토리를 통해 생성된 MainActivitySubcomponent는 액티비티에서 호출한 inject()를 통해 의존성 주입이 완료된다.
         // AppModule에서 팩토리를 통해 MainActivitySubcomponent가 생성 --> 액티비티에서 호출한 inject()를 통해 의존성 주입
-        AndroidInjection.inject(this);
+//        AndroidInjection.inject(this);
         // 멤버 인젝션 이후, 의존성 주입이 잘 되었는지 확인
-        Log.e("MainActivity", appString);
-        Log.e("MainActivity", activityString);
+//        Log.e("MainActivity", appString);
+//        Log.e("MainActivity", activityString);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
