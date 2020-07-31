@@ -26,7 +26,7 @@ public abstract class AppModule {
     // 싱글턴이 아닌 매번 인스턴스를 생성하거나 시스템으로부터 가져오고 싶다면 @Singleton 애노테이션을 제거하면 된다.
     @Provides
     @Singleton
-    SharedPreferences provideSharedPreferences(App app) {
+    static SharedPreferences provideSharedPreferences(App app) {
         return app.getSharedPreferences(
                 "default", Context.MODE_PRIVATE
         );

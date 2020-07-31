@@ -32,9 +32,13 @@ public abstract class MainActivityModule {
 //    @ClassKey(MainFragment.class)
 //    abstract AndroidInjector.Factory<?> bindInjectorFactory(MainFragmentSubcomponent.Factory factory);
 
+    /**
+     * Module class가 abstract일 경우, @Provides 메서드를 static으로 선언하지 않은 경우 아래와 같은 에러가 나타난다.
+     * error: wta.architecture.chapter2.MainActivityModule is abstract and has instance @Provides methods. Consider making the methods static or including a non-abstract subclass of the module instead.
+     */
     @Provides
     @ActivityScope
-    String provideActivityName() {
+    static String provideActivityName() {
         return MainActivity.class.getSimpleName();
     }
 }
