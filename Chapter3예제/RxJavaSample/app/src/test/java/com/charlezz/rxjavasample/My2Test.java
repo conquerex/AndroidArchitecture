@@ -32,6 +32,7 @@ public class My2Test {
             e.printStackTrace();
         }
         System.out.println(">>> 2 now = " + System.currentTimeMillis());
+        // justSrc 발행되고 -> 1 now -> 2now -> deferSrc 구독을 확인 후 발행
         justSrc.subscribe(time -> System.out.println(">>> 1 time = " + time));
         deferSrc.subscribe(time -> System.out.println(">>> 2 time = " + time));
     }
@@ -65,10 +66,12 @@ public class My2Test {
     @Test
     public void testTimer() throws InterruptedException {
         System.out.println("........ testTimer ...........");
+        // 1초 지연 후 발행
         Observable src = Observable.timer(1, TimeUnit.SECONDS);
         System.out.println("구독!!!!!!");
         src.subscribe(event -> System.out.println("실행!!!"));
         Thread.sleep(5000);
+        // 수행시간 5s 6ms : Thread.sleep 중에 출력됨
     }
 
     @Test
@@ -90,6 +93,7 @@ public class My2Test {
     @Test
     public void testFlatMap2() {
         System.out.println("........ testFlatMap2 ...........");
+        // 시작은 2부터. count가 8이므로 2,3,4,5,6,7,8,9. 즉 9까지.
         Observable.range(2, 8)
                 .flatMap(x -> Observable.range(1, 9)
                         .map(y -> String.format("%d * %d = %d", x, y, x * y)))
@@ -99,6 +103,7 @@ public class My2Test {
     @Test
     public void testBuffer() {
         System.out.println("........ testBuffer ...........");
+        // 3개씩
         Observable.range(0, 10)
                 .buffer(3).subscribe(integers -> {
             System.out.println("버퍼 데이터 발행~~~");
@@ -113,7 +118,7 @@ public class My2Test {
         System.out.println("........ testScan ...........");
         Observable.range(1, 5)
                 .scan((x, y) -> {
-                    System.out.println(String.format("%d + %d = ", x, y));
+                    System.out.print(String.format("%d + %d = ", x, y));
                     return x + y;
                 })
                 .subscribe(System.out::println);
@@ -238,6 +243,7 @@ public class My2Test {
         ArrayList<Observable<Integer>> list = new ArrayList<>();
         list.add(Observable.just(10, 20, 30)
                 .delay(100, TimeUnit.MILLISECONDS));
+        // 가장 먼저 아이템을 발행하는 Observable
         list.add(Observable.just(3, 4, 5));
         list.add(Observable.just(11, 22, 33)
                 .delay(200, TimeUnit.MILLISECONDS));
