@@ -11,7 +11,8 @@ public class DebugProxy implements InvocationHandler {
         this.target = target;
     }
 
-    public Object invoke(Object proxy, Method m, Object[] args) throws Throwable{
+    @Override
+    public Object invoke(Object o, Method m, Object[] args) throws Throwable {
         Object result;
         System.out.println(m.getName() + " 메서드 호출 전");
         result = m.invoke(target, args);
