@@ -1,8 +1,13 @@
 apply plugin: 'java'
 
 dependencies {
+    // 의존성 구성
     implementation project(':annotation')
+
+    // JavaPoet
+    // java 소스 파일을 쉽게 생성하는 라이브러리
     implementation 'com.squareup:javapoet:1.11.1'
+
     implementation 'com.google.auto.service:auto-service:1.0-rc5'
 }
 

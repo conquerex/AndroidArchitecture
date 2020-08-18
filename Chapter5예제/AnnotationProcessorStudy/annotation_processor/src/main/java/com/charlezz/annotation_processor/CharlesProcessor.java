@@ -25,6 +25,18 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 
+/*
+    <애노테이션 프로세서>
+    컴파일 타임에 애노테이션을 스캔하고 처리하도록 javac에 포함된 도구
+    자바 소스 코드를 읽어 또 다른 자바 파일을 출력하는 데 사용
+    .
+    빠르다
+    리플렉션을 사용하지 않는다
+    보일러 플레이트 코드 제거
+    .
+    애노테이션 프로세서를 사용하려면 3개의 안드로이드 스튜디오 모듈이 필요
+      --> 애노테이션 모듈, 애노테이션 프로세서 모듈, 애플리케이션 모듈
+ */
 @AutoService(Processor.class)
 public class CharlesProcessor extends AbstractProcessor {
 
@@ -36,13 +48,22 @@ public class CharlesProcessor extends AbstractProcessor {
 
     private String packageName;
 
+    /*
+        1. void init
+     */
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
+        // 프로세싱에 필요한 정보들을 processingEnvironment로부터 가져온다.
     }
 
+    /*
+        2. boolean process : 애노테이션을 처리하고 자바파일을 생성하는 코드를 작성
+     */
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        // 이곳에서 애노테이션을 처리한다.
+
         System.out.println("process");
 
         final Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(CharlesIntent.class);
@@ -74,18 +95,26 @@ public class CharlesProcessor extends AbstractProcessor {
         return true;
     }
 
+    /*
+        3. Set<String> getSupportedAnnotationTypes
+     */
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         return new HashSet<String>(){
             {
                 add(CharlesIntent.class.getCanonicalName());
+                // 어떤 애노테이션을 처리할지 Set에 추가한다.
             }
         };
     }
 
+    /*
+        4. SourceVersion getSupportedSourceVersion
+     */
     @Override
     public SourceVersion getSupportedSourceVersion() {
         return SourceVersion.latestSupported();
+        // 지원하는 자바 버전을 반환한다.
     }
 
     private MethodSpec generateMethod(TypeElement element) {
