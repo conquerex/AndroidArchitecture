@@ -11,9 +11,11 @@ public class ReflectionTest {
     public static final String TAG = ReflectionTest.class.getSimpleName();
 
     void simpleExample() {
+        Log.d(TAG, ">>>>>> simpleExample");
         try {
             Class c = Class.forName("java.lang.String");
             Method m[] = c.getDeclaredMethods();
+            Log.e(TAG, "---- length ::: " + m.length);
             for (int i = 0; i < m.length; i++)
                 Log.e(TAG, m[i].toString());
         } catch (Throwable e) {
@@ -22,6 +24,7 @@ public class ReflectionTest {
     }
 
     void settingUP() throws ClassNotFoundException {
+        Log.d(TAG, ">>>>>> settingUP");
         Class c = Class.forName("java.lang.String");
         Class intClass = int.class;
         Class type = Integer.TYPE;
@@ -30,6 +33,7 @@ public class ReflectionTest {
     }
 
     void simulateInstanceOf() {
+        Log.d(TAG, ">>>>>> simulateInstanceOf");
         try {
             Class cls = Class.forName("java.lang.String");
             boolean b1 = cls.isInstance(3);
@@ -42,9 +46,11 @@ public class ReflectionTest {
     }
 
     void findoutMethods() {
+        Log.d(TAG, ">>>>>> findoutMethods");
         try {
             Class cls = Class.forName("java.lang.String");
             Method methods[] = cls.getDeclaredMethods();
+            Log.e(TAG, "---- length ::: " + methods.length);
             for (int i = 0; i < methods.length; i++) {
                 Method m = methods[i];
                 Log.e(TAG, "메소드 이름 = " + m.getName());
@@ -69,9 +75,11 @@ public class ReflectionTest {
     }
 
     void findConstructors() {
+        Log.d(TAG, ">>>>>> findConstructors");
         try {
             Class cls = Class.forName("java.lang.String");
             Constructor ctorlist[] = cls.getDeclaredConstructors();
+            Log.e(TAG, "---- length ::: " + ctorlist.length);
             for (int i = 0; i < ctorlist.length; i++) {
                 Constructor ct = ctorlist[i];
                 Log.e(TAG, "생성자 이름 = " + ct.getName());
@@ -94,10 +102,12 @@ public class ReflectionTest {
 
 
     void findoutFields() {
+        Log.d(TAG, ">>>>>> findoutFields");
         try {
             Class cls = Class.forName("java.lang.String");
 
             Field fieldlist[] = cls.getDeclaredFields();
+            Log.e(TAG, "---- length ::: " + fieldlist.length);
             for (int i = 0; i < fieldlist.length; i++) {
                 Field fld = fieldlist[i];
                 Log.e(TAG, "필드명 = " + fld.getName());
@@ -113,6 +123,7 @@ public class ReflectionTest {
     }
 
     void invoke() {
+        Log.d(TAG, ">>>>>> invoke");
         try {
             Class cls = Class.forName("java.lang.String");
             String data = "Hello World";
@@ -129,10 +140,12 @@ public class ReflectionTest {
     }
 
     void invokePrivate() {
+        Log.d(TAG, ">>>>>> invokePrivate");
         try {
             A a = new A();
             //메소드가 private하여 a.show() 찾을 수가 없음
             Method showMethod = a.getClass().getDeclaredMethod("show");
+            // private이라서 setAccessible로 세팅
             showMethod.setAccessible(true);
             showMethod.invoke(a);
 
@@ -142,6 +155,7 @@ public class ReflectionTest {
     }
 
     void creatingObject(){
+        Log.d(TAG, ">>>>>> creatingObject");
         try {
             Class personClass = Class.forName("com.charlezz.reflection.Person");
             Constructor personConstructor = personClass.getConstructor(String.class, int.class);
@@ -154,9 +168,11 @@ public class ReflectionTest {
     }
 
     void changeValuesOfFields(){
+        Log.d(TAG, ">>>>>> changeValuesOfFields");
         try {
             Class cls = Class.forName("com.charlezz.reflection.Person");
-            Field ageField = cls.getField("age");
+//            Field ageField = cls.getField("age"); // getField 사용시 Exception 발생
+            Field ageField = cls.getDeclaredField("age");
             Person person = new Person("Charles", 20);
             Log.e(TAG,"person.age = " + person.age);
             ageField.setInt(person, 10);
