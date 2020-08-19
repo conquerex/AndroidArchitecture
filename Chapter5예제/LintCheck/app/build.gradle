@@ -28,5 +28,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // 안드로이드 프로젝트에서 커스텀 lint를 위한 'checker' 모듈을 생성
+    // checker 모듈의 의존성을 추가
     lintChecks project(':checker')
 }

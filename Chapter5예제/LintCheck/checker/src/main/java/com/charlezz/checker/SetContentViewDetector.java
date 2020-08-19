@@ -17,10 +17,15 @@ import com.android.tools.lint.detector.api.Severity;
 import com.android.tools.lint.detector.api.SourceCodeScanner;
 import com.intellij.psi.PsiMethod;
 
+/*
+    (p405, Detector)
+    Detector는 특정 문제를 검출하는 클래스
+ */
 public class SetContentViewDetector
         extends Detector
         implements SourceCodeScanner {
 
+    // 이슈 생성 : Issue.create(...)
     public static final Issue ISSUE = Issue.create(
             SetContentViewDetector.class.getSimpleName(),
             "Prohibits usages of setContentView()",
@@ -37,13 +42,28 @@ public class SetContentViewDetector
         return Arrays.asList("setContentView");
     }
 
+    /*
+        (p406)
+        getApplicableMethodNames 메서드에서 반환된 메서드의 이름이 검출되면 호출된다.
+        .
+        JavaContext context  : 분석한 자바 파일에 대한 정보들을 가진다.
+        UCallExpression node : 호출된메서드의 노드 정보
+        PsiMethod method     : 호출된 메서드를 표현
+     */
     @Override
     public void visitMethodCall(@NotNull JavaContext context, @NotNull UCallExpression node, @NotNull PsiMethod method) {
 
+        // 데이터 바인딩 클래스의 메서드일 경우 report하지 앟으려면
+        // Evaluator로부터 메서드가 DatabindingUtil 클래스에 속하는지 확인해야한다.
         if (context.getEvaluator().isMemberInClass(method, "androidx.databinding.DataBindingUtil")) {
             return;
         }
 
+        /*
+            <context.report>
+             setContentView 이름을 갖는 메서드가 검출되었다면 context.report(...) 메서드 호출을 통해
+             lint에 에러를 알린다.
+         */
         context.report(
                 ISSUE,
                 node,
