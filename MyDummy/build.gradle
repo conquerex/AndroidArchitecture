@@ -9,6 +9,11 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+
+        // 네비게이션 컴포넌트 Safe Args 플러그인 설정을 위해
+        // 프로젝트 레벨의 build.gradle에 다음 내용을 추가
+        def nav_version = "2.3.0"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 
