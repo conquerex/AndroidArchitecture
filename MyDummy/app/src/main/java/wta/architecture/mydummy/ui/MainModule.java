@@ -1,4 +1,4 @@
-package wta.architecture.mydummy.di;
+package wta.architecture.mydummy.ui;
 
 import android.content.Context;
 
@@ -6,9 +6,15 @@ import androidx.databinding.DataBindingUtil;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
 import wta.architecture.mydummy.R;
 import wta.architecture.mydummy.databinding.ActivityMainBinding;
+import wta.architecture.mydummy.di.ActivityContext;
+import wta.architecture.mydummy.di.ActivityScope;
+import wta.architecture.mydummy.di.FragmentScope;
 import wta.architecture.mydummy.ui.MainActivity;
+import wta.architecture.mydummy.ui.post.PostFragment;
+import wta.architecture.mydummy.ui.post.PostModule;
 
 @Module
 public abstract class MainModule {
@@ -23,4 +29,11 @@ public abstract class MainModule {
     static Context provideContext(MainActivity activity) {
         return activity;
     }
+
+    /**
+     * 서브 컴포넌트 정의
+     */
+    @FragmentScope
+    @ContributesAndroidInjector(modules = PostModule.class)
+    abstract PostFragment getPostFragment();
 }
