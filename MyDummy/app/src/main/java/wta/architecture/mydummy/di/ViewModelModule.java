@@ -16,8 +16,8 @@ public abstract class ViewModelModule {
 
     // PostViewModel 작성 후...
     // PostViewModel까지 만들었다면 오브젝트 그래프에 멀티 바인딩하도록 ViewModelModule에 다음과 같은 내용을 추가한다.
-    @Binds
-    @IntoMap
-    @ViewModelKey(PostViewModel.class)
-    abstract ViewModel bindsPostViewModel(PostViewModel viewModel);
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(PostViewModel.class)
+//    abstract ViewModel bindsPostViewModel(PostViewModel viewModel);
 }

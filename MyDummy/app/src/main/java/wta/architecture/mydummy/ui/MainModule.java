@@ -33,7 +33,7 @@ public abstract class MainModule {
     /**
      * 서브 컴포넌트 정의
      */
-    @FragmentScope
-    @ContributesAndroidInjector(modules = PostModule.class)
-    abstract PostFragment getPostFragment();
+//    @FragmentScope
+//    @ContributesAndroidInjector(modules = PostModule.class)
+//    abstract PostFragment getPostFragment();
 }
