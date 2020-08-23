@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import javax.inject.Inject;
 
+import dagger.Lazy;
 import dagger.android.support.DaggerFragment;
 import wta.architecture.mydummy.databinding.FragmentPostBinding;
 import wta.architecture.mydummy.di.AppViewModelFactory;
@@ -32,6 +35,12 @@ public class PostFragment extends DaggerFragment {
 
     @Inject
     AppViewModelFactory viewModelFactory;
+    @Inject
+    PostAdapter adapter;
+    @Inject
+    LinearLayoutManager layoutManager;
+    @Inject
+    Lazy<NavController> navController;
 
     PostViewModel viewModel;
 
@@ -45,6 +54,25 @@ public class PostFragment extends DaggerFragment {
             // 데이터 요청, 프래그먼트가 재생성되었을 때는 요청하지 않는다.
             viewModel.loadPosts();
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // Lifecycle Owner 등록
+        binding.setLifecycleOwner(getViewLifecycleOwner());
+        // RecyclerView Adapter 지정
+        binding.recyclerView.setAdapter(adapter);
+        // RecyclerView 레이아웃 매니저 지정
+        binding.recyclerView.setLayoutManager(layoutManager);
+        // 바인딩 클래스에 ViewModel 연결
+        binding.setViewModel(viewModel);
+        // ViewModel이 가진 게시 글 목록을 구독하여 Adapter에 반영
+        viewModel.getLivePosts()
+                .observe(getViewLifecycleOwner(), list -> adapter.setItems(list));
+        // 게시글이 클릭되었을 때 게시 글 상세 화면 목적지로 이동
+//        viewModel.getPostClickEvent()
+//                .observe(getViewLifecycleOwner(), postItem -> navController.get().navigate(...));
     }
 
     @Nullable

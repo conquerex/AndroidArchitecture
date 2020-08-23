@@ -72,9 +72,9 @@ public class PostFragment extends DaggerFragment {
         viewModel.getLivePosts()
                 .observe(getViewLifecycleOwner(), list -> adapter.setItems(list));
         //게시글이 클릭 되었을 때 다음 목적지로 이동
-        viewModel.getPostClickEvent()
-                .observe(getViewLifecycleOwner(), postItem ->
-                        navController.get().navigate(PostFragmentDirections
-                                .actionPostFragmentToPostDetailFragment(postItem.getPost())));
+//        viewModel.getPostClickEvent()
+//                .observe(getViewLifecycleOwner(), postItem ->
+//                        navController.get().navigate(PostFragmentDirections
+//                                .actionPostFragmentToPostDetailFragment(postItem.getPost())));
     }
 }

@@ -38,7 +38,7 @@ public class PostAdapter extends RecyclerView.Adapter<ViewBindingHolder> {
     //뷰홀더 생성
     @NonNull
     @Override
-    public ViewBindingHolder<?> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewBindingHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewBindingHolder(parent.getContext(), viewType);
     }
 

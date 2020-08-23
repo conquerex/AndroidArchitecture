@@ -14,8 +14,12 @@ public class PostItem {
     @NonNull
     private final Post post;
 
-    public PostItem(@NonNull Post post) {
+    @NonNull
+    private final EventListener eventListener;
+
+    public PostItem(@NonNull Post post, @NonNull EventListener eventListener) {
         this.post = post;
+        this.eventListener = eventListener;
     }
 
     @NonNull
@@ -25,5 +29,14 @@ public class PostItem {
 
     public String getTitle() {
         return post.getTitle();
+    }
+
+    @NonNull
+    public EventListener getEventListener() {
+        return eventListener;
+    }
+
+    public interface EventListener {
+        void onPostClick(PostItem postItem);
     }
 }

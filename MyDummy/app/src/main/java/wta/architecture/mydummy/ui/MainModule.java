@@ -17,6 +17,7 @@ import wta.architecture.mydummy.ui.post.PostModule;
 
 @Module
 public abstract class MainModule {
+    // MS : 의존성을 제공
     @Provides
     @ActivityScope
     static ActivityMainBinding provideBinding(MainActivity activity) {
@@ -36,3 +37,4 @@ public abstract class MainModule {
     @ContributesAndroidInjector(modules = PostModule.class)
     abstract PostFragment getPostFragment();
 }
+

@@ -13,12 +13,12 @@ import timber.log.Timber;
 /*
     생명 주기에 안전하게 이벤트를 처리
  */
-public class SingleLiveEvent<T> extends MutableLiveData {
+public class SingleLiveEvent<T> extends MutableLiveData<T> {
     private final AtomicBoolean mPending = new AtomicBoolean(false);
 
     @Override
     @MainThread
-    public void observe(@NonNull LifecycleOwner owner, @NonNull Observer observer) {
+    public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer) {
         if (hasActiveObservers()) {
             Timber.w("여러 Observer가 존재하지만, 단 하나만 알림을 받을 수 있다.");
         }
@@ -32,7 +32,7 @@ public class SingleLiveEvent<T> extends MutableLiveData {
 
     @Override
     @MainThread
-    public void setValue(Object value) {
+    public void setValue(T value) {
         mPending.set(true);
         super.setValue(value);
     }

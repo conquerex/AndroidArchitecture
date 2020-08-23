@@ -15,15 +15,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class RetrofitModule {
-    @Provides
-    @Singleton
-    Retrofit provideRetrofit() {
-        return new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .build();
-    }
+//    @Provides
+//    @Singleton
+//    Retrofit provideRetrofit() {
+//        return new Retrofit.Builder()
+//                .baseUrl("https://jsonplaceholder.typicode.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+//                .build();
+//    }
     @Provides
     @Reusable
     PostService providePostService(Retrofit retrofit) {

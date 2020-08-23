@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import androidx.lifecycle.ViewModel;
 import dagger.MapKey;
 
-@Documented
+//@Documented
 @Retention(RetentionPolicy.RUNTIME)
 @MapKey
 public @interface ViewModelKey {

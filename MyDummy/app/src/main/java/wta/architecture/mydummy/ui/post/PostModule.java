@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,5 +38,12 @@ public class PostModule {
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         };
+    }
+
+    // Navigation 컴포넌트에서 목적지 간 이동을 담당하는 NavController
+    @Provides
+    @FragmentScope
+    NavController provideNavController(PostFragment postFragment) {
+        return NavHostFragment.findNavController(postFragment);
     }
 }
