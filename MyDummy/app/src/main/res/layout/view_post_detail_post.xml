@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="wta.architecture.mydummy.ui.detail.PostDetailPostItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:ellipsize="end"
+            android:text="@{item.title}"
+            android:textColor="#000000"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            tools:text="With My JSON Server online service and a simple GitHub repo, you can have your own online fake REST server in seconds." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/body"
+            android:text="@{item.title}"
+            android:textSize="28dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintHorizontal_bias="0"
+            tools:text="Fake Online REST API for Testing and Prototyping\n
+                        Serving ~350M requests per month\n
+                        Powered by JSON Server + LowDB" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
