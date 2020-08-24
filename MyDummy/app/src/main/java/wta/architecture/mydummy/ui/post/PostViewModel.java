@@ -36,7 +36,8 @@ public class PostViewModel extends AndroidViewModel implements PostItem.EventLis
     private final SingleLiveEvent<PostItem> postClickEvent = new SingleLiveEvent<>();
 
     /*
-    
+        errorEvent 매개변수의 @Named("errorEvent")가 빠졌을 때...
+        error: [Dagger/MissingBinding] wta.architecture.mydummy.util.SingleLiveEvent<java.lang.Throwable> cannot be provided without an @Inject constructor or an @Provides-annotated method.
      */
     @Inject
     public PostViewModel(@NonNull Application application,
