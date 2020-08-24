@@ -70,9 +70,21 @@ public class PostFragment extends DaggerFragment {
         // ViewModel이 가진 게시 글 목록을 구독하여 Adapter에 반영
         viewModel.getLivePosts()
                 .observe(getViewLifecycleOwner(), list -> adapter.setItems(list));
-        // 게시글이 클릭되었을 때 게시 글 상세 화면 목적지로 이동
-//        viewModel.getPostClickEvent()
-//                .observe(getViewLifecycleOwner(), postItem -> navController.get().navigate(...));
+        /*
+            게시글이 클릭되었을 때 게시 글 상세 화면 목적지로 이동
+            .
+             (p469)
+             이제 PostFragment에서 게시 글 하나를 클릭하면
+             컴파일 타임에 생성된 POstFragmentDirections를 통해 PostDetailFragment로 이동할 수 있다.
+         */
+        viewModel.getPostClickEvent()
+                .observe(getViewLifecycleOwner(),
+                        postItem -> navController.get().navigate(
+                                PostFragmentDirections.actionFragmentToPostDetailFragment(
+                                        postItem.getPost()
+                                )
+                        )
+                );
     }
 
     @Nullable

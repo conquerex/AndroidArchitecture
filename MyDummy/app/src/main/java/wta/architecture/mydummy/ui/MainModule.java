@@ -12,6 +12,8 @@ import wta.architecture.mydummy.databinding.ActivityMainBinding;
 import wta.architecture.mydummy.di.ActivityContext;
 import wta.architecture.mydummy.di.ActivityScope;
 import wta.architecture.mydummy.di.FragmentScope;
+import wta.architecture.mydummy.ui.detail.PostDetailFragment;
+import wta.architecture.mydummy.ui.detail.PostDetailModule;
 import wta.architecture.mydummy.ui.post.PostFragment;
 import wta.architecture.mydummy.ui.post.PostModule;
 
@@ -36,5 +38,10 @@ public abstract class MainModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = PostModule.class)
     abstract PostFragment getPostFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = PostDetailModule.class)
+    abstract PostDetailFragment getPostDetailFragment();
+
 }
 

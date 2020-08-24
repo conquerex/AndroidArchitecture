@@ -36,7 +36,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@{item.name}"
-            android:textColor="#000000"
+            android:textColor="#3F51B5"
             android:textSize="28dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

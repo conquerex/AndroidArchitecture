@@ -9,6 +9,27 @@
         android:id="@+id/post_fragment"
         android:name="wta.architecture.mydummy.ui.post.PostFragment"
         android:label="fragment_post"
-        tools:layout="@layout/fragment_post" />
+        tools:layout="@layout/fragment_post">
+
+        <!-- PostFragment에서 PostDetailFragment로 이동 -->
+        <!-- 화면 전환시 사용할 애니메이션도 적용한다. -->
+        <action
+            android:id="@+id/action_fragment_to_post_detail_fragment"
+            app:destination="@id/post_detail_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/post_detail_fragment"
+        android:name="wta.architecture.mydummy.ui.detail.PostDetailFragment"
+        android:label="fragment_post_detail"
+        tools:layout="@layout/fragment_post_detail">
+        <!-- PostDetailFragment가 요구하는 인자로 Post를 설정한다. -->
+        <argument
+            android:name="post"
+            app:argType="wta.architecture.mydummy.data.entity.Post" />
+    </fragment>
 
 </navigation>
