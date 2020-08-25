@@ -53,6 +53,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return "ClassPojo [zipcode = " + zipcode + ", geo = " + geo + ", suite = " + suite + ", city = " + city + ", street = " + street + "]";
+        return String.format("%s, %s, %s", suite, street, city);
     }
 }

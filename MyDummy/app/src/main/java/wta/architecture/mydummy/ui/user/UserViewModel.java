@@ -29,18 +29,13 @@ public class UserViewModel extends AndroidViewModel {
     private final SingleLiveEvent<Throwable> errorEvent;
 
     private final MutableLiveData<User> liveItem = new MutableLiveData<>();
-    // todo : 이 형식으로 사용해도 되나
 //    private final LiveData<String> name = Transformations.map(liveItem, input -> input.getEmail());
-//    private final LiveData<String> name = Transformations.map(liveItem, User::getName); // Lambda can be replaced with method reference
-//    private final LiveData<String> email = Transformations.map(liveItem, User::getEmail);
-//    private final LiveData<String> homepage = Transformations.map(liveItem, User::getWebsite);
-//    private final LiveData<String> phone = Transformations.map(liveItem, User::getPhone);
-
-    private final LiveData<String> name = Transformations.map(liveItem, input -> input.getName());
-    private final LiveData<String> email = Transformations.map(liveItem, input -> input.getEmail());
-    private final LiveData<String> homepage = Transformations.map(liveItem, input -> input.getWebsite());
-    private final LiveData<String> phone = Transformations.map(liveItem, input -> input.getPhone());
+    private final LiveData<String> name = Transformations.map(liveItem, User::getName); // Lambda can be replaced with method reference
+    private final LiveData<String> email = Transformations.map(liveItem, User::getEmail);
+    private final LiveData<String> homepage = Transformations.map(liveItem, User::getWebsite);
+    private final LiveData<String> phone = Transformations.map(liveItem, User::getPhone);
     private final LiveData<String> location = Transformations.map(liveItem, input -> input.getAddress().toString());
+
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
 
