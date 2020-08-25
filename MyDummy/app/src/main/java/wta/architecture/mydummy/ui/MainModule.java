@@ -16,6 +16,8 @@ import wta.architecture.mydummy.ui.detail.PostDetailFragment;
 import wta.architecture.mydummy.ui.detail.PostDetailModule;
 import wta.architecture.mydummy.ui.post.PostFragment;
 import wta.architecture.mydummy.ui.post.PostModule;
+import wta.architecture.mydummy.ui.user.UserFragment;
+import wta.architecture.mydummy.ui.user.UserModule;
 
 @Module
 public abstract class MainModule {
@@ -42,6 +44,10 @@ public abstract class MainModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = PostDetailModule.class)
     abstract PostDetailFragment getPostDetailFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = UserModule.class)
+    abstract UserFragment getUserFragment();
 
 }
 

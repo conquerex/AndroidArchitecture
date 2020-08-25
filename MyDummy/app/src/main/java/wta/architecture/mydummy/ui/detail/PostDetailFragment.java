@@ -69,8 +69,14 @@ public class PostDetailFragment extends DaggerFragment {
         binding.recyclerView.setLayoutManager(manager);
         binding.setViewModel(viewModel);
         viewModel.getLiveItems().observe(getViewLifecycleOwner(), items -> adapter.setItems(items));
-        // todo
-//        viewModel.getUserClickEvent().observe(getViewLifecycleOwner(),
-//                userId -> navController.get().navigate());
+        // (p483)
+        // PostDetailFragment에서 UserFragment로 이동할 수 있도로고 목적지를 설정한 뒤
+        // NavController를 통해 화면 전환을 할 수 있는 코드를 다음과 같이 추가한다.
+        viewModel.getUserClickEvent().observe(getViewLifecycleOwner(),
+                userId -> {
+                    navController.get().navigate(
+                            PostDetailFragmentDirections.actionPostDetailFragmentToUserFragment(userId)
+                    );
+                });
     }
 }

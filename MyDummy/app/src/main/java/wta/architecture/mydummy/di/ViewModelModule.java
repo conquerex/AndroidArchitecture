@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 import wta.architecture.mydummy.ui.detail.PostDetailViewModel;
 import wta.architecture.mydummy.ui.post.PostViewModel;
+import wta.architecture.mydummy.ui.user.UserViewModel;
 
 // ViewModel과 관련된 내용을 오브젝트 그래프로 관리
 @Module
@@ -33,4 +34,14 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PostDetailViewModel.class)
     abstract ViewModel bindsPostDetailViewModel(PostDetailViewModel viewModel);
+
+    /*
+        UserViewModel을 추가했으므로
+        ViewModelModule에 해당하는 ViewModel 클래스를 멀티 바인딩하여 오브젝트 그래프에 포함시킨다.
+        UserViewModel에서는 UserFragment의 뷰에 필요한 데이터들을 제공한다. (사용자이름, 이메일, 홈페이지 등)
+     */
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserViewModel.class)
+    abstract ViewModel bindsUserViewModel(UserViewModel viewModel);
 }
